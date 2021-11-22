@@ -79,7 +79,7 @@
 <!-- ABOUT THE PROJECT -->
 ## About The Project
 
-[![Product Name Screen Shot][product-screenshot]](https://example.com)
+<!-- [![Product Name Screen Shot][product-screenshot]](https://github.com/include-minimaltools/eva-lightning) -->
 
 The lack of tools with sufficient capacity to meet the needs of both students and teachers of the National University of Engineering in a satisfactory way, has led us to create a virtual learning environment platform with more recent web technologies such as React.js, Node.js, Aspnet, among others.
 
