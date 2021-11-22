@@ -1,0 +1,29 @@
+
+.container{
+    width: 382px;
+    margin: 0 auto;
+}
+
+section article {
+    transition: all 0.3s ease;
+    background-color: whitesmoke;
+    margin: 1rem 1rem;
+    padding: 0.02rem 0;
+    border-radius: 0.8rem;
+    cursor: pointer;
+}
+
+img {
+    border-radius: 0.8rem;    
+
+}
+
+section article:hover {
+    box-shadow: 0 0.1rem 0.4rem rgba(0,0,0,0.3);
+
+}
+
+section article h2, section article p {
+    margin: 1rem ;
+}
+

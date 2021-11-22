@@ -1,0 +1,27 @@
+
+body{
+    height: -webkit-fill-available;
+}
+
+#root{
+    height: 100%;
+}
+
+.ant-tree.ant-tree-block-node.ant-tree-directory{
+    background-color: transparent;
+}
+
+.ant-layout-content::-webkit-scrollbar-button{
+    display: none;
+}
+
+
+.ant-layout-content::-webkit-scrollbar{
+    width: 5px;
+    display: grid;
+}
+
+.ant-layout-content::-webkit-scrollbar-thumb{
+    border-radius: 10rem;
+    background: rgba(0,0,0,.1);
+}
