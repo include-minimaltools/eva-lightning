@@ -30,7 +30,7 @@
 <br />
 <div align="center">
   <a href="https://github.com/include-minimaltools/eva-lightning">
-    <img src="ClientApp/src/images/logoUNI.png" alt="Logo" width="80" height="80">
+    <img src="ClientApp/src/images/logoUNI.png" alt="Logo" width="120" height="80">
   </a>
 
   <h3 align="center">EVA - Lightning</h3>
@@ -70,10 +70,7 @@
     </li>
     <li><a href="#usage">Usage</a></li>
     <li><a href="#roadmap">Roadmap</a></li>
-    <li><a href="#contributing">Contributing</a></li>
-    <li><a href="#license">License</a></li>
     <li><a href="#contact">Contact</a></li>
-    <li><a href="#acknowledgments">Acknowledgments</a></li>
   </ol>
 </details>
 
