@@ -1,5 +1,5 @@
 import { Col, Layout, Row, Spin } from 'antd';
-import React, { useEffect, useState } from 'react'
+import React from 'react'
 import { useRoutes } from 'react-router-dom';
 
 import Interface from './components/Interface.container';
