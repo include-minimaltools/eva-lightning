@@ -4,6 +4,7 @@ import { useRoutes } from 'react-router-dom';
 
 import Interface from './components/Interface.container';
 import AboutUs from './views/about/AboutUs.component';
+import AssignDetail from './views/assign/AssignDetail.component';
 import BrandContainer from './views/brands/Brand.container';
 import CourseContainer from './views/course/Course.containter';
 import CourseCardContainer from './views/personal/CourseCard.container';
@@ -31,6 +32,11 @@ export default function Routes() {
     {
       path: '/my', element: <Interface>
         <CourseCardContainer />
+      </Interface>
+    },
+    {
+      path: '/assign/:id', element: <Interface>
+        <AssignDetail />
       </Interface>
     },
     {

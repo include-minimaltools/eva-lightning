@@ -46,7 +46,7 @@ export default function CourseContainer() {
         />
       </Row>
       <Row
-        style={{ height: "750px", background: "white", borderRadius: "10px" }}
+        style={{ background: "white", borderRadius: "10px" }}
       >
         <Col flex="auto">
           {section === "about" && <CourseAbout id={id} />}
