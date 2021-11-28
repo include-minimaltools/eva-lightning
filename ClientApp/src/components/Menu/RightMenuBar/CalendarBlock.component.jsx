@@ -3,8 +3,7 @@ import { Divider } from "antd";
 import Accordion from "@mui/material/Accordion";
 import AccordionSummary from "@mui/material/AccordionSummary";
 import AccordionDetails from "@mui/material/AccordionDetails";
-import Typography from "@mui/material/Typography";
-import { CalendarOutlined, MenuOutlined } from "@ant-design/icons";
+import { CalendarOutlined } from "@ant-design/icons";
 import { Calendar } from "antd";
 
 function onPanelChange(value, mode) {

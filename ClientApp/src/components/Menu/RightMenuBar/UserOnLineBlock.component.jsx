@@ -2,12 +2,9 @@ import React from "react";
 import Accordion from "@mui/material/Accordion";
 import AccordionSummary from "@mui/material/AccordionSummary";
 import AccordionDetails from "@mui/material/AccordionDetails";
-import Typography from "@mui/material/Typography";
-import Perfil from "../../../images/Perfil.jpg";
 import { Fragment } from "react";
 import { Avatar, Badge, Col, Divider, Row } from "antd";
-import { MenuOutlined, UserOutlined } from "@ant-design/icons";
-import { Link } from "react-router-dom";
+import { UserOutlined } from "@ant-design/icons";
 
 const colorFont = "white";
 

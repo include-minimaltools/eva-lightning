@@ -4,7 +4,7 @@ import Accordion from "@mui/material/Accordion";
 import AccordionSummary from "@mui/material/AccordionSummary";
 import AccordionDetails from "@mui/material/AccordionDetails";
 import Typography from "@mui/material/Typography";
-import { EllipsisOutlined, FolderOutlined, MenuOutlined } from "@ant-design/icons";
+import { FolderOutlined } from "@ant-design/icons";
 
 export default function PrivateFileBlock({ colorFont }) {
   return (
