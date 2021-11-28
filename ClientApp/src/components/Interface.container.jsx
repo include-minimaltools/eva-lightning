@@ -21,12 +21,12 @@ function Interface({ children }) {
       <Layout style={{height:'100%', background:'#F5F0F3' }}>
         <LeftMenuBar />
         <Layout style={{height:'100%', padding: "0 24px 24px"}}>
-          <Breadcrumb style={{ margin: "16px 0" }}>
+          {/* <Breadcrumb style={{ margin: "16px 0" }}>
             <Item>Home</Item>
             <Item>List</Item>
             <Item>App</Item>
-          </Breadcrumb>
-          <Content style={{ height:'100%', width:'100%', overflowY:'scroll'}}>
+          </Breadcrumb> */}
+          <Content style={{ marginTop:'1rem', height:'100%', width:'100%', overflowY:'scroll'}}>
             {children}
           </Content>
           <Footer style={{ textAlign: "center" }}>

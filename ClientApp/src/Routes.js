@@ -8,6 +8,7 @@ import AssignDetail from './views/assign/AssignDetail.component';
 import Login from './views/auth/login.component';
 import BrandContainer from './views/brands/Brand.container';
 import CourseContainer from './views/course/Course.containter';
+import Events from './views/events/Events.component';
 import CourseCardContainer from './views/personal/CourseCard.container';
 
 
@@ -45,6 +46,9 @@ export default function Routes() {
     },
     {
       path: '/login', element: <Login/>
+    },
+    {
+      path: '/events', element: <Interface><Events/></Interface>
     },
     {
       path: '*', element: <Interface >

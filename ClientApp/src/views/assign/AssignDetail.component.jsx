@@ -5,60 +5,50 @@ import axios from "axios";
 
 const { Title } = Typography;
 
+const data = [
+  {
+    key: "1",
+    status: "Entregado",
+    score: "Calificado",
+    date: "2020-06-01",
+    date2: "00:00:00",
+    date_update: "2020-06-01",
+  }
+]
+
 function AssignDetail() {
   const columns = [
     {
       title: "Estado de la entrega",
       dataIndex: "status",
       key: "status",
-      render: (text) => <a>{text}</a>,
+      // render: (text) => <a>{text}</a>,
     },
     {
       title: "Estado de la calificación",
       dataIndex: "score",
       key: "score",
-      render: (text) => <a>{text}</a>,
+      // render: (text) => <a>{text}</a>,
     },
     {
       title: "Fecha de entrega",
       dataIndex: "date",
       key: "date",
-      render: (text) => <a>{text}</a>,
+      // render: (text) => <a>{text}</a>,
     },
     {
       title: "Tiempo restante",
       dataIndex: "date2",
       key: "date2",
-      render: (text) => <a>{text}</a>,
+      // render: (text) => <a>{text}</a>,
     },
     {
       title: "Última modificación",
       dataIndex: "date_update",
       key: "date_update",
-      render: (text) => <a>{text}</a>,
+      // render: (text) => <a>{text}</a>,
     },
   ];
-
-  const props = {
-    name: "file",
-    multiple: false,
-    action: "/api/Task/SaveFile",
-    onChange(info) {
-      const { status } = info.file;
-      console.log('info',info);
-      if (status !== "uploading") {
-        console.log(info.file, info.fileList);
-      }
-      if (status === "done") {
-        message.success(`${info.file.name} file uploaded successfully.`);
-      } else if (status === "error") {
-        message.error(`${info.file.name} file upload failed.`);
-      }
-    },
-    onDrop(e) {
-      console.log("Dropped files", e.dataTransfer.files);
-    },
-  };
 
   const UploadFile = async (e) => {
     const File = new FormData();
@@ -92,7 +82,8 @@ function AssignDetail() {
             columnHeader={false}
             style={{ textAlign: "center" }}
             columns={columns}
-            // dataSource={data}
+            pagination={false}
+            dataSource={data}
           />
         </Col>
       </Row>
