@@ -1,9 +1,12 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Net;
 using System.Net.Http;
+using System.Threading.Tasks;
 using eva_lightning.Models;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 
@@ -16,6 +19,21 @@ namespace eva_lightning.Controllers
         public TaskController(UniModel context)
         {
             _context = context;
+        }
+
+        public class FileUpload
+        {
+            public int Id { get; set; }
+            public IFormFile File { get; set; }
+        }
+
+
+        
+        [HttpPost]
+        [Consumes("multipart/form-data")]
+        public async Task SaveFile(FileUpload file)
+        {
+            
         }
 
         [HttpGet]
