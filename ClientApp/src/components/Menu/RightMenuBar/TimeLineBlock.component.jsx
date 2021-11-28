@@ -4,9 +4,9 @@ import Accordion from "@mui/material/Accordion";
 import AccordionSummary from "@mui/material/AccordionSummary";
 import AccordionDetails from "@mui/material/AccordionDetails";
 import Typography from "@mui/material/Typography";
-import { EllipsisOutlined, MenuOutlined } from "@ant-design/icons";
+import { EllipsisOutlined, HourglassOutlined, MenuOutlined } from "@ant-design/icons";
 
-export default function NextEventsBlock({ colorFont }) {
+export default function TimeLineBlock({ colorFont }) {
   return (
     <Accordion
       style={{
@@ -16,14 +16,14 @@ export default function NextEventsBlock({ colorFont }) {
       }}
     >
       <AccordionSummary aria-controls="panel1a-content" id="panel1a-header">
-        <Divider orientation="left" style={{ color: colorFont }}>
-          <EllipsisOutlined style={{ marginRight: "10px" }} />
-          Próximos eventos
+        <Divider orientation="left" style={{ color: "white" }}>
+          <HourglassOutlined style={{ marginRight: "10px" }} />
+          Línea de Tiempo
         </Divider>
       </AccordionSummary>
 
       <AccordionDetails style={{ marginLeft: "50px" }}>
-        <Typography>No hay eventos proximos</Typography>
+        <Typography>No hay línea de tiempo</Typography>
       </AccordionDetails>
     </Accordion>
   );
