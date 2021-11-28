@@ -11,6 +11,16 @@ body{
     background-color: transparent;
 }
 
+::-webkit-scrollbar{
+    width: 5px;
+    display: grid;
+}
+
+::-webkit-scrollbar-thumb{
+    border-radius: 10rem;
+    background: rgba(0,0,0,.1);
+}
+
 .ant-layout-content::-webkit-scrollbar-button{
     display: none;
 }

@@ -25,6 +25,7 @@ export default function RightMenuBar({isImageRightBar ,...props}) {
         backgroundSize: "cover",
         backgroundRepeat: "no-repeat",
         backgroundPosition: "center",
+        overflowY:'scroll'
       }}
       collapsedWidth={0}
       {...props}
