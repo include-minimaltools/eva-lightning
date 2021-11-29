@@ -1,7 +1,39 @@
-import URL from "./connection";
-import React, {useState, useEffect} from "react";
+import { UserData } from "../helpers";
 
-export default class Uni {
+class Uni
+{
+    static async login({ email, password })
+    {
+        const response = await fetch(`/api/user/login?email=${email}&password=${password}`, { method: 'GET' });
+
+        if(response.status !== 200)
+            return null;
+
+        const data = await response.json();
+        return await data;
+    }
+
+    static async getCourses()
+    {
+        const { carnet } = UserData();
+        const response = await fetch(`/api/course/GetCoursesByStudent?carnet=${carnet}`, { method: 'GET' });
+        const data = await response.json();
+        return await data;
+    }
+
+    static async GetTeacherCourse()
+    {
+        const response = await fetch("/api/Teacher_Course/Get");
+        const data = await response.json();
+        return data;
+    }
+    
+    static async GetTeacher()
+    {
+        const response = await fetch("/api/Teacher/Get");
+        const data = await response.json();
+        return data;
+    }
 
     static async GetCareer(id)
     {
@@ -11,7 +43,6 @@ export default class Uni {
             return null;
 
         const data = await response.json();
-        console.log(data);
         return await data;
     }
 
@@ -29,3 +60,5 @@ export default class Uni {
     }
 
 }
+
+export default Uni;

@@ -2,12 +2,9 @@ import React from "react";
 import Accordion from "@mui/material/Accordion";
 import AccordionSummary from "@mui/material/AccordionSummary";
 import AccordionDetails from "@mui/material/AccordionDetails";
-import Typography from "@mui/material/Typography";
-import Perfil from "../../../images/Perfil.jpg";
 import { Fragment } from "react";
 import { Avatar, Badge, Col, Divider, Row } from "antd";
-import { MenuOutlined } from "@ant-design/icons";
-import { Link } from "react-router-dom";
+import { UserOutlined } from "@ant-design/icons";
 
 const colorFont = "white";
 
@@ -24,7 +21,7 @@ export default function UserOnlineBlock() {
         >
           <AccordionSummary aria-controls="panel1a-content" id="panel1a-header">
             <Divider orientation="left" style={{ color: colorFont }}>
-              <MenuOutlined style={{ marginRight: "10px" }} />
+              <UserOutlined style={{ marginRight: "10px" }} />
               Usuarios en línea
             </Divider>
           </AccordionSummary>

@@ -1,10 +1,13 @@
 import React from "react";
-import { Divider, Tree, Layout } from "antd";
+import { Layout } from "antd";
 import MicrosoftBlock from "./RightMenuBar/MicrosoftBlock.component";
 import NextEventsBlock from "./RightMenuBar/NextEventsBlock.component";
 import CalendarBlock from "./RightMenuBar/CalendarBlock.component";
 import NavigationBlock from "./RightMenuBar/NavigationBlock.component";
 import UserOnlineBlock from "./RightMenuBar/UserOnLineBlock.component";
+import BadgesBlock from "./RightMenuBar/Badges.component";
+import TimeLineBlock from "./RightMenuBar/TimeLineBlock.component";
+import PrivateFileBlock from "./RightMenuBar/PrivateFileBlock.component";
 
 const { Sider } = Layout;
 
@@ -25,25 +28,17 @@ export default function RightMenuBar({isImageRightBar ,...props}) {
         backgroundSize: "cover",
         backgroundRepeat: "no-repeat",
         backgroundPosition: "center",
+        overflowY:'scroll'
       }}
       collapsedWidth={0}
       {...props}
     >
       <MicrosoftBlock />
       <NavigationBlock colorFont={colorFont} />
-      <Divider orientation="left" style={{ color: colorFont }}>
-        Línea de Tiempo
-      </Divider>
-      <Divider orientation="left" style={{ color: colorFont }}>
-        Archivos Privados
-      </Divider>
+      <TimeLineBlock />
+      <PrivateFileBlock />
       <UserOnlineBlock />
-      <Divider orientation="left" style={{ color: colorFont }}>
-        Insigneas recientes
-      </Divider>
-      <Divider orientation="left" style={{ color: colorFont }}>
-        Calendario
-      </Divider>
+      <BadgesBlock/>
       <CalendarBlock />
       <NextEventsBlock colorFont={colorFont}/>
     </Sider>

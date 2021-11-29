@@ -8,9 +8,7 @@ import { Fragment } from "react";
 import { Avatar, Col, Divider, Row } from "antd";
 import {
   CloudFilled,
-  CloudOutlined,
   MailFilled,
-  MailOutlined,
   MenuOutlined,
 } from "@ant-design/icons";
 import { Link } from "react-router-dom";

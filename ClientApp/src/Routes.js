@@ -1,11 +1,14 @@
 import { Col, Layout, Row, Spin } from 'antd';
-import React, { useEffect, useState } from 'react'
+import React from 'react'
 import { useRoutes } from 'react-router-dom';
 
 import Interface from './components/Interface.container';
 import AboutUs from './views/about/AboutUs.component';
+import AssignDetail from './views/assign/AssignDetail.component';
+import Login from './views/auth/login.component';
 import BrandContainer from './views/brands/Brand.container';
 import CourseContainer from './views/course/Course.containter';
+import Events from './views/events/Events.component';
 import CourseCardContainer from './views/personal/CourseCard.container';
 
 
@@ -34,7 +37,18 @@ export default function Routes() {
       </Interface>
     },
     {
+      path: '/assign/:id', element: <Interface>
+        <AssignDetail />
+      </Interface>
+    },
+    {
       path: '/course/:section/:id', element: <Interface><CourseContainer/></Interface>
+    },
+    {
+      path: '/login', element: <Login/>
+    },
+    {
+      path: '/events', element: <Interface><Events/></Interface>
     },
     {
       path: '*', element: <Interface >

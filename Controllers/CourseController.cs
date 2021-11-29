@@ -36,22 +36,21 @@ namespace eva_lightning.Controllers
         [HttpGet("[action]")]
         public dynamic GetById(int ID_COURSE) =>
             (from c in _context.COURSE
-            select new
-            {
-                c.ID_COURSE,
-                c.NAME,
-                c.DESCRIPTION,
-                c.OBJECTS,
-                c.CREDITS,
-                c.FRECUENCY,
-                c.HOURS,
-                c.ID_CAREER,
-                c.USER_CREATE,
-                c.DATE_CREATE,
-                c.USER_UPDATE,
-                c.DATE_UPDATE
-            }).FirstOrDefault(x => x.ID_COURSE == ID_COURSE);
-
+             select new
+             {
+                 c.ID_COURSE,
+                 c.NAME,
+                 c.DESCRIPTION,
+                 c.OBJECTS,
+                 c.CREDITS,
+                 c.FRECUENCY,
+                 c.HOURS,
+                 c.ID_CAREER,
+                 c.USER_CREATE,
+                 c.DATE_CREATE,
+                 c.USER_UPDATE,
+                 c.DATE_UPDATE
+             }).FirstOrDefault(x => x.ID_COURSE == ID_COURSE);
 
         [HttpPost]
         public JsonResult InsertOrUpdate()
@@ -81,6 +80,22 @@ namespace eva_lightning.Controllers
                         semester_name = semester.N_SEMESTER
                     }).ToList();
                 return query;
+        }
+        
+        [HttpGet("[action]")]
+        public IEnumerable<dynamic> GetCoursesByStudent(string carnet)
+        {
+            var courses = (from cs in _context.STUDENT_COURSE
+                          join c in _context.COURSE on cs.ID_COURSE equals c.ID_COURSE
+                          where cs.ID_STUDENT == carnet
+                          select new
+                          {
+                              id_course = c.ID_COURSE,
+                              name = c.NAME,
+                              description = c.DESCRIPTION
+                          }).ToList();
+
+            return courses;
         }
     }
 }
