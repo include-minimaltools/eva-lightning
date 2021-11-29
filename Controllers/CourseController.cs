@@ -5,6 +5,7 @@ using System.Linq;
 
 namespace eva_lightning.Controllers
 {
+    [Route("api/[controller]")]
     public class CourseController : Controller
     {
         private UniModel _context;
@@ -32,7 +33,7 @@ namespace eva_lightning.Controllers
              c.DATE_UPDATE
          }).ToList();
 
-        [HttpGet]
+        [HttpGet("[action]")]
         public dynamic GetById(int ID_COURSE) =>
             (from c in _context.COURSE
             select new

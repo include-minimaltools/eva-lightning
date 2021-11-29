@@ -5,15 +5,17 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace eva_lightning.Controllers
 {
+    [Route("api/[controller]")]
     public class CareerController : Controller
     {
+        
         private UniModel _context;
         public CareerController(UniModel context)
         {
             _context = context;
         }
 
-        [HttpGet]
+        [HttpGet("[action]")]
         public IEnumerable<dynamic> Get() =>
             (from c in _context.CAREER
             select new

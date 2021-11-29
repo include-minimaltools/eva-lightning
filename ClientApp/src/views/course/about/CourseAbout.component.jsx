@@ -1,8 +1,12 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
+import { useParams,useNavigate} from "react-router-dom";
+
 import { Card } from "antd";
 import { InfoCircleOutlined, EyeOutlined } from "@ant-design/icons";
 import { Table } from 'antd';
+import {message} from 'antd';
 import PersonIcon from '@mui/icons-material/Person';
+import Uni from "../../../service/Uni.service";
 
 
 export default function CourseAbout() {
@@ -13,15 +17,30 @@ export default function CourseAbout() {
     return <h4 style={{ fontFamily: "Helvetica", marginTop: "5rem" }}>{text}</h4>
   }
 
+  const [aboutData, setAboutData] = useState([]);
+  const { id } = useParams();
+  const navigate = useNavigate();
+
+  const getData = async () => {
+    if(id === null) return;
+    const data = await Uni.GetCareer(id);
+
+    if(data === null)
+    {
+      message.error("No se pudo cargar la información de la clase");
+      navigate('/');
+    }
+
+    setAboutData(data);
+    message.success("Success");
+  };
+
+  useEffect(() => {
+    getData();
+  },[])
+
   const About = "Mi experiencia profesional abarca prácticamente todas las asignaturas de XXX. Además de haber ejercido funciones de docencia desde el año XXX. En esta parte la docente puede realizar un breve resumen de su vida académica en la Universidad Nacional de Ingeniería"
   const Objetive = "Describe con objetividad y claridad los resultados del aprendizaje a alcanzar por parte del estudiante. Estos se centran en el comportamiento, es decir, detallan y establecen las habilidades y destreza que los estudiantes deben ser capaces de realizar o lograr al final del curso. Establecer un objetivo y una meta clara logra dos fines fundamentales. En primer lugar, los alumnos sabrán por qué el curso es importante y cómo éste les ayudará en el futuro. En segundo lugar, los objetivos ayudan a mantener enfocado el contenido del curso."
-  const CourseName = "Física"
-  const Campus = "RUSB"
-  const Faculty = "F.E.C"
-  const Career = "ING. EN COMPTACIÓN"
-  const Group = "2M1-CO"
-  const Teacher = "HILDA LUVY TORREZ HERNÁNDEZ"
-  const Semester = "SEGUNDO SEMESTRE 2021"
   const ClassRoom = "B-II-1"
   const TableColor = "#F5E769"
 
@@ -66,7 +85,7 @@ export default function CourseAbout() {
     },
     {
       textAlign: 'center',
-      title: 'F.E.C',
+      title: aboutData.faculty_name,
       dataIndex: 'fec',
       align: 'justify',
       sizes: '0rem'
@@ -87,21 +106,21 @@ export default function CourseAbout() {
       textAlign: 'center',
       key: '1',
       facultad: 'CARRERA:',
-      fec: Career,
-      grupo: Group
+      fec: aboutData.campus_name,
+      grupo: aboutData.groups,
     },
     {
       textAlign: 'center',
       key: '1',
       facultad: 'DOCENTE:',
-      fec: Teacher,
+      fec: aboutData.teacher_name,
       grupo: 'AULA'
     },
     {
       textAlign: 'center',
       key: '1',
       facultad: 'SEMESTRE:',
-      fec: Semester,
+      fec: "Semestre "+ aboutData.semester+" del 2021",
       grupo: ClassRoom
     },
   ];
@@ -208,7 +227,7 @@ export default function CourseAbout() {
         <PersonIcon style={{ fontSize: "7rem", color: "#7F7F7F" }} ></PersonIcon>
       </div>
 
-      {TeacherName("HILDA LUVY TORREZ HERNÁNDEZ")}
+      {TeacherName(aboutData.teacher_name)}
       <div style={{ width: "30rem" }}>
         <Table
           {...state}
@@ -216,10 +235,10 @@ export default function CourseAbout() {
           style={{ textAlign: "center" }}
           columns={columns}
           dataSource={data}
-          title={() => <h4>{CourseName}</h4>}
+          title={() => <h4>{aboutData.course_name}</h4>}
         />
       </div>
-          {/* <AboutCourseBackground/> */}
+      {/* <AboutCourseBackground/> */}
 
 
 
@@ -227,11 +246,11 @@ export default function CourseAbout() {
         <Table
           {...state}
           pagination={{ position: [state.top, state.bottom] }}
-          style={{ textAlign: "center",fontWeight:"bold"}}
+          style={{ textAlign: "center", fontWeight: "bold" }}
           bordered
           columns={columns2}
           dataSource={data2}
-          title={() => <h4>{Campus}</h4>}
+          title={() => <h4>{aboutData.campus_name}</h4>}
           backgroundColor={TableColor}
         />
       </div>
