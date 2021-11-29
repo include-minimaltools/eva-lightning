@@ -1,5 +1,5 @@
 import React from "react";
-import { Divider, Tree, Layout } from "antd";
+import { Layout } from "antd";
 import MicrosoftBlock from "./RightMenuBar/MicrosoftBlock.component";
 import NextEventsBlock from "./RightMenuBar/NextEventsBlock.component";
 import CalendarBlock from "./RightMenuBar/CalendarBlock.component";
