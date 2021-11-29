@@ -10,7 +10,7 @@ import {
   Spin,
   Typography,
 } from "antd";
-import React from "react";
+import React, { useEffect } from "react";
 import { useState } from "react";
 import { Navigate, useNavigate } from "react-router-dom";
 import Uni from "../../service/Uni.service";
@@ -38,14 +38,23 @@ function Login() {
   const navigate = useNavigate();
   const [loginStatus, setLoginStatus] = useState("");
 
+  useEffect(() => {
+    if (localStorage.getItem("user")) {
+      localStorage.setItem("user",null);
+    }
+  }, []);
+
   const onFinish = async (values) => {
     setLoginStatus("loading");
-    const result = await Uni.login(values);
+    const { user } = await Uni.login(values);
 
-    if (result == null) {
+    if (user == null) {
       setLoginStatus("error");
       return;
     }
+
+    localStorage.setItem("user", JSON.stringify(user));
+    console.log(JSON.parse(localStorage.getItem("user")));
     setLoginStatus("success");
     setTimeout(() => {
       setLoginStatus("");

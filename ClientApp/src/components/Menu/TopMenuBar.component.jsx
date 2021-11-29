@@ -1,10 +1,11 @@
-import React from "react";
-import { Col, Row, Typography, Layout, Avatar } from "antd";
+import React, { useEffect, useState } from "react";
+import { Col, Row, Typography, Layout, Avatar, message } from "antd";
 import { UserOutlined, MessageFilled, BellFilled } from "@ant-design/icons";
 
 import logo from '../../images/logoUNI.png';
 import background from '../../images/RLP-background.png';
 import { ImageOutlined, MenuOutlined } from "@mui/icons-material";
+import { useNavigate } from "react-router-dom";
 
 const { Header } = Layout;
 const { Text } = Typography;
@@ -16,6 +17,23 @@ const leftElementsStyle = {
 }
 
 export default function TopMenuBar({ rightMenu, imageRightMenu }) {
+  const [userData, setUserData] = useState({});
+  const navigate = useNavigate();
+
+  const validateSession = () => {
+    const user = JSON.parse(localStorage.getItem("user"));
+    if(!user) 
+    {
+      message.error("No se ha iniciado sesión");
+      navigate("/login");
+    }
+    setUserData(user);
+  };
+
+  useEffect(()=>{
+    validateSession();
+  },[]);
+
   return (
     <Header
       className="header"
@@ -42,7 +60,7 @@ export default function TopMenuBar({ rightMenu, imageRightMenu }) {
               <BellFilled style={{ fontSize: "20px", color: "white" }} />
             </Col>
             <Col style={leftElementsStyle}>
-              <Text style={{ color: "white" }}>Obed Miguel Reyes Amador</Text>
+              <Text style={{ color: "white", cursor:'pointer' }}>{userData?.name} {userData?.lastname}</Text>
             </Col>
             <Avatar icon={<UserOutlined />} style={{ margin: "5px" }} />
           </Row>

@@ -1,3 +1,4 @@
+import { UserData } from "../helpers";
 
 class Uni
 {
@@ -9,7 +10,18 @@ class Uni
             return null;
 
         const data = await response.json();
-        console.log(data);
+        return await data;
+    }
+
+    static async getCourses()
+    {
+        const { carnet } = UserData();
+        const response = await fetch(`/api/course/GetCoursesByStudent?carnet=${carnet}`, { method: 'GET' });
+
+        if(response.status !== 200)
+            return null;
+
+        const data = await response.json();
         return await data;
     }
 

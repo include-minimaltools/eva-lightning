@@ -1,11 +1,36 @@
-import React from "react";
-import { Card } from "antd";
+import React, { useEffect } from "react";
+import { Card, message } from "antd";
 import { InfoCircleOutlined, EyeOutlined } from "@ant-design/icons";
 import { Table } from 'antd';
 import PersonIcon from '@mui/icons-material/Person';
+import { useNavigate, useParams } from "react-router-dom";
+import Uni from "../../../service/Uni.service";
+import { useState } from "react";
 
 
 export default function CourseAbout() {
+  // const [aboutData, setAboutData] = useState([]);
+  // const { id } = useParams();
+  // const navigate = useNavigate();
+
+  // const getData = async () => {
+  //   if(id === null) return;
+  //   const data = await Uni.GetCareer(id);
+
+  //   if(data === null)
+  //   {
+  //     message.error("No se pudo cargar la información de la clase");
+  //     navigate('/');
+  //   }
+
+  //   setAboutData(data);
+  //   message.success("Success");
+  // };
+
+  // useEffect(() => {
+  //   getData();
+  // },[])
+
   const parapraph = (text) => {
     return <p style={{ margin: "1.6rem", sizes: "2rem" }}> {text}</p>;
   };
