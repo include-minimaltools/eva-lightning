@@ -21,20 +21,20 @@ namespace eva_lightning.Controllers
             _context = context;
         }
 
-        public class FileUpload
-        {
-            public int Id { get; set; }
-            public IFormFile File { get; set; }
-        }
+        // public class FileUpload
+        // {
+        //     public int Id { get; set; }
+        //     public IFormFile File { get; set; }
+        // }
 
 
         
-        [HttpPost]
-        [Consumes("multipart/form-data")]
-        public async Task SaveFile(FileUpload file)
-        {
+        // [HttpPost]
+        // [Consumes("multipart/form-data")]
+        // public async Task SaveFile(FileUpload file)
+        // {
             
-        }
+        // }
 
         [HttpGet]
         public IEnumerable<dynamic> Get()

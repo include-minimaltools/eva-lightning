@@ -1,4 +1,4 @@
-import React, { Component } from "react";
+import React from "react";
 import "./css/SubjectCards.css";
 import images from "../../views/personal/assets/images";
 
