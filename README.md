@@ -202,7 +202,7 @@ Distributed under the MIT License. See `LICENSE.txt` for more information.
 Developers: 
 [@Gabriel Ortiz](https://www.facebook.com/gabriel.ortiz.amador) - gabrielortizamador@gmail.com
 [@Luis Pineda](https://www.facebook.com/people/Luis-Joseph/100008202189282/)
-[@Engel Reyes](https://www.facebook.com/engel.reyes.54)
+[@Engel Reyes](https://www.facebook.com/engel.reyes.54) - engelreyeser@gmail.com
 [@Obed Rios](https://www.facebook.com/obedisai.riossolano)
 
 Project Link: [https://github.com/include-minimaltools/eva-lightning](https://github.com/include-minimaltools/eva-lightning)
