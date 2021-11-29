@@ -37,13 +37,23 @@ namespace eva_lightning.Controllers
 
         // }
 
-        [HttpGet]
+        [HttpGet("[action]")]
         public IEnumerable<dynamic> Get()
             => (from c in _context.TASK.ToList() select new { c.ID_TASK, c.NAME, c.DESCRIPTION, c.DELIVERY_DATE, c.ID_COURSE, c.ID_TYPE_TASK });
 
-        [HttpGet]
+        [HttpGet("[action]")]
         public dynamic GetById(string IdTask)
-            => (from c in _context.TASK.ToList() where c.ID_TASK == IdTask select new { c.ID_TASK, c.NAME, c.DESCRIPTION, c.DELIVERY_DATE, c.ID_COURSE, c.ID_TYPE_TASK });
+            => (from t in _context.TASK.ToList()
+                where t.ID_TASK == IdTask
+                select new
+                {
+                    id_task = t.ID_TASK,
+                    task_name = t.NAME,
+                    task_description = t.DESCRIPTION,
+                    task_delivery_date = t.DELIVERY_DATE,
+                    task_course = t.ID_COURSE,
+                    task_type = t.ID_TYPE_TASK
+                }).FirstOrDefault();
 
         [HttpPost]
         public HttpResponseMessage InsertOrUpdate(TASK element)
@@ -115,7 +125,7 @@ namespace eva_lightning.Controllers
                             task_course = t.ID_COURSE,
                             task_type = t.ID_TYPE_TASK
                         };
-            
+
             return tasks;
         }
     }

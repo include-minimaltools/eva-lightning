@@ -1,22 +1,49 @@
 import React from "react";
-import { Table, Typography, message, Row, Col, Divider } from "antd";
+import { Table, Typography, Row, Col, Divider } from "antd";
+import { useEffect } from "react";
 import { useState } from "react";
-import axios from "axios";
+import Uni from "../../service/Uni.service";
+import { useParams } from "react-router-dom";
+import moment from "moment";
 
 const { Title } = Typography;
 
-const data = [
-  {
-    key: "1",
-    status: "Entregado",
-    score: "Calificado",
-    date: "2020-06-01",
-    date2: "00:00:00",
-    date_update: "2020-06-01",
-  }
-]
-
 function AssignDetail() {
+  const { id } = useParams();
+  const [taskData, setTaskData] = useState();
+  const [deliveryDate, setDeliveryDate] = useState(new moment());
+  const [dateUpdate, setDateUpdate] = useState(new moment());
+  const [time, setTime] = useState(new moment());
+
+  useEffect(() => {
+    const fetchData = async () => {
+      const fetch = await Uni.GetTaskById(id);
+
+      const delivery = new moment(fetch?.task_delivery_date); 
+
+      setTaskData(fetch);
+      setDeliveryDate(delivery);
+      setDateUpdate(new moment());
+
+      const nowDate = new moment();
+      // console.log(new moment(delivery - nowDate));
+      setTime(delivery.diff(nowDate, "hours"));
+    };
+
+    fetchData();
+  }, [id]);
+
+  const data = [
+    {
+      key: "1",
+      status: "Entregado",
+      score: "Calificado",
+      date: deliveryDate.format("DD/MM/YYYY"),
+      date2: time,
+      date_update: dateUpdate.format("DD/MM/YYYY"),
+    },
+  ];
+
   const columns = [
     {
       title: "Estado de la entrega",
@@ -40,7 +67,7 @@ function AssignDetail() {
       title: "Tiempo restante",
       dataIndex: "date2",
       key: "date2",
-      // render: (text) => <a>{text}</a>,
+      render: (time) => <Row style={{ background: time < 0 && 'red', color: time < 0 && 'white', borderRadius:'10px', justifyContent:'center' }}>{time} horas</Row>,
     },
     {
       title: "Última modificación",
@@ -59,8 +86,7 @@ function AssignDetail() {
       headers: {
         "content-type": "multipart/form-data",
       },
-    }
-    // axios.post("/api/task/savefile", File, config)
+    };
   };
 
   return (
@@ -73,7 +99,9 @@ function AssignDetail() {
       }}
     >
       <Row>
-        <Title level={2}>Trabajo 1: Descripcion del trabajo</Title>
+        <Title level={2}>
+          {taskData?.task_name}: {taskData?.task_description}
+        </Title>
       </Row>
       <Divider orientation="center">Detalles de la entrega</Divider>
       <Row justify="center">
@@ -88,9 +116,9 @@ function AssignDetail() {
         </Col>
       </Row>
       <Divider orientation="center">Adjuntar archivo a la tarea</Divider>
-      <Row justify="center" style={{marginBottom:'100px'}}>
+      <Row justify="center" style={{ marginBottom: "100px" }}>
         <Col>
-          <input type="file" id="file" name="file" onChange={UploadFile}/>
+          <input type="file" id="file" name="file" onChange={UploadFile} />
         </Col>
       </Row>
     </div>

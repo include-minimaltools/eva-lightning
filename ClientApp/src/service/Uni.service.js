@@ -68,6 +68,17 @@ class Uni
         const data = await response.json();
         return await data;
     }
+
+    static async GetTaskById(id)
+    {
+        const response = await fetch(`/api/task/GetById?IdTask=${id}`, {method: 'GET'});
+        
+        if(response.status !== 200)
+            return null;
+
+        const data = await response.json();
+        return await data;
+    }
 }
 
 export default Uni;
