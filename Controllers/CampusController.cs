@@ -67,6 +67,8 @@ namespace eva_lightning.Controllers
                          join teacher in _context.TEACHER on teacher_course.ID_TEACHER equals teacher.ID_TEACHER
                          join teacher_groups in _context.TEACHER_GROUPS on teacher.ID_TEACHER equals teacher_groups.ID_TEACHER
                          join groups in _context.GROUPS on teacher_groups.ID_GROUPS equals groups.ID_GROUPS 
+                         join student in _context.GROUPS on groups.ID_GROUPS equals student.ID_GROUPS
+                         join groups_name in _context.GROUPS on student.ID_GROUPS equals groups_name.ID_GROUPS
                          select new
                          {
                              course_name = course.NAME,
@@ -75,7 +77,7 @@ namespace eva_lightning.Controllers
                              career_name = career.DESCRIPTION,
                              teacher_name = teacher.NAME,
                              semester = semester.N_SEMESTER,
-                             groups = groups.NAME
+                             groups = groups_name.NAME
                          }).FirstOrDefault();
             return query;
         }

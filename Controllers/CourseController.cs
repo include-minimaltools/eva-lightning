@@ -14,7 +14,7 @@ namespace eva_lightning.Controllers
             _context = context;
         }
 
-        [HttpGet]
+        [HttpGet("[action]")]
         public IEnumerable<dynamic> Get() =>
         (from c in _context.COURSE
          select new
@@ -57,6 +57,30 @@ namespace eva_lightning.Controllers
         public JsonResult InsertOrUpdate()
         {
             return null;
+        }
+
+           [HttpGet("[action]")]
+
+        public dynamic GetAboutInfo(){
+
+         var query = (from c in _context.COURSE
+                    join course_name in _context.COURSE on c.ID_COURSE equals course_name.ID_COURSE
+                    join career_name in _context.CAREER on course_name.ID_CAREER equals career_name.ID_CAREER
+                    join semester in _context.SEMESTER on course_name.ID_COURSE equals semester.ID_COURSE
+                    join teacher_course in _context.TEACHER_COURSE on course_name.ID_COURSE equals teacher_course.ID_COURSE
+                    join teacher in _context.TEACHER on teacher_course.ID_TEACHER equals teacher.ID_TEACHER
+                    join teacher_groups in _context.TEACHER_GROUPS on teacher.ID_TEACHER equals teacher_groups.ID_TEACHER
+                    join groups in _context.GROUPS on teacher_groups.ID_GROUPS equals groups.ID_GROUPS
+                    join student in _context.GROUPS on groups.ID_GROUPS equals student.ID_GROUPS 
+                    join groups_name in _context.GROUPS on student.ID_GROUPS equals groups_name.ID_GROUPS
+                    select new
+                    {
+                        course_name = course_name.NAME,
+                        career_name = career_name.DESCRIPTION,
+                        groups_name = groups_name.NAME,
+                        semester_name = semester.N_SEMESTER
+                    }).ToList();
+                return query;
         }
     }
 }
