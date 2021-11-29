@@ -9,6 +9,7 @@ using Microsoft.EntityFrameworkCore;
 
 namespace eva_lightning.Controllers
 {
+    [Route("api/[controller]")]
     public class UserController : Controller
     {
         private UniModel _context;
@@ -18,14 +19,19 @@ namespace eva_lightning.Controllers
             _context = context;
         }
 
-        public bool IsValidUser(string username, string password)
+        
+
+        [HttpGet("[action]")]
+        public dynamic Login(string email, string password)
         {
-            var user = _context.USERS.FirstOrDefault(x => x.EMAIL == username && x.PASSWORD == password);
-            if (user != null)
-            {
-                return true;
-            }
-            return false;
+            var user = (from u in _context.USERS
+                        where u.EMAIL == email && u.PASSWORD == password
+                        select new
+                        {
+                            email = u.EMAIL,
+                            password = u.PASSWORD
+                        }).First();
+            return user;
         }
     }
 }

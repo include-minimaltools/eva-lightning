@@ -1,6 +1,19 @@
-import { Button, Card, Form, Input, message, Row, Typography } from "antd";
+import {
+  Button,
+  Card,
+  Form,
+  Input,
+  message,
+  Modal,
+  Result,
+  Row,
+  Spin,
+  Typography,
+} from "antd";
 import React from "react";
+import { useState } from "react";
 import { Navigate, useNavigate } from "react-router-dom";
+import Uni from "../../service/Uni.service";
 
 const { Title } = Typography;
 const { Item } = Form;
@@ -22,16 +35,58 @@ const FormStyle = {
 };
 
 function Login() {
-
   const navigate = useNavigate();
+  const [loginStatus, setLoginStatus] = useState("");
 
-  const onFinish = (values) => {
-    console.log("Received values of form: ", values);
-    navigate("/my");
-  }
+  const onFinish = async (values) => {
+    setLoginStatus("loading");
+    const result = await Uni.login(values);
+
+    if (result == null) {
+      setLoginStatus("error");
+      return;
+    }
+    setLoginStatus("success");
+    setTimeout(() => {
+      setLoginStatus("");
+      navigate("/");
+    }, 1500);
+  };
 
   return (
     <Row style={BackgroundStyle} justify="center" align="middle">
+      <Modal
+        visible={loginStatus === "success"}
+        footer={null}
+        closable={false}
+        onCancel={() => setLoginStatus("")}
+      >
+        <Result
+          status="success"
+          title="Ha iniciado sesión correctamente"
+          subTitle="Bienvenido al entorno virtual de eva"
+        />
+      </Modal>
+      <Modal
+        visible={loginStatus === "loading"}
+        footer={null}
+        closable={false}
+        onCancel={() => setLoginStatus("")}
+      >
+        <Result icon={<Spin size="large" />} title="Iniciando sesión..." />
+      </Modal>
+      <Modal
+        visible={loginStatus === "error"}
+        footer={null}
+        closable={false}
+        onCancel={() => setLoginStatus("")}
+      >
+        <Result
+          status="error"
+          title="Email o contraseña incorreccto"
+          subTitle="Intente nuevamente ingresando otra contraseña o email"
+        />
+      </Modal>
       <Form
         name="basic"
         labelCol={{ span: 8 }}
@@ -67,8 +122,12 @@ function Login() {
         >
           <Input.Password />
         </Item>
-        <Row justify='end'>
-          <Button type="primary" htmlType="submit" style={{ background:'#003792', borderColor:'#003792'}}>
+        <Row justify="end">
+          <Button
+            type="primary"
+            htmlType="submit"
+            style={{ background: "#003792", borderColor: "#003792" }}
+          >
             Acceder
           </Button>
         </Row>
