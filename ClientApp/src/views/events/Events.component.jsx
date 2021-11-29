@@ -2,80 +2,55 @@ import React, { useState } from "react";
 import { Calendar, Badge } from 'antd';
 import { useEffect } from "react";
 import Uni from "../../service/Uni.service";
-
-function getListData(value) {
-
-  let listData;
-  switch (value.date()) {
-    case 8:
-      listData = [
-        { type: 'warning', content: 'This is warning event.' },
-        { type: 'success', content: 'This is usual event.' },
-      ];
-      break;
-    case 10:
-      listData = [
-        { type: 'warning', content: 'This is warning event.' },
-        { type: 'success', content: 'This is usual event.' },
-        { type: 'error', content: 'This is error event.' },
-      ];
-      break;
-    case 15:
-      listData = [
-        { type: 'warning', content: 'This is warning event' },
-        { type: 'success', content: 'This is very long usual event。。....' },
-        { type: 'error', content: 'This is error event 1.' },
-        { type: 'error', content: 'This is error event 2.' },
-        { type: 'error', content: 'This is error event 3.' },
-        { type: 'error', content: 'This is error event 4.' },
-      ];
-      break;
-    default:
-  }
-  return listData || [];
-}
-
-function dateCellRender(value) {
-  const listData = getListData(value);
-  return (
-    <ul className="events">
-      {listData.map(item => (
-        <li key={item.content}>
-          <Badge status={item.type} text={item.content} />
-        </li>
-      ))}
-    </ul>
-  );
-}
-
-function getMonthData(value) {
-  if (value.month() === 8) {
-    return 1394;
-  }
-}
-
-function monthCellRender(value) {
-  const num = getMonthData(value);
-  return num ? (
-    <div className="notes-month">
-      <section>{num}</section>
-      <span>Backlog number</span>
-    </div>
-  ) : null;
-}
+import moment from 'moment';
+import { useNavigate } from "react-router-dom";
 
 function Events() {
+  const navigate = useNavigate();
   const [taskList, setTaskList] = useState([]);
+
+  function dateCellRender(value) {
+    const listData = getListData(value);
+    return (
+      <ul className="events">
+        {listData.map(item => (
+          <li key={item?.content} onClick={() => AsignDetail(item?.id)}>
+            <Badge status={item?.type} text={item?.content} />
+          </li>
+        ))}
+      </ul>
+    );
+  }
+
+  const AsignDetail = (id) => {
+    navigate(`/assign/${id}`);
+  }
+
+  function getListData(value)
+  {
+    let listData = [];
+    taskList.forEach(task => {
+      var delivery_date = new moment(task?.task_delivery_date)
+
+      if(delivery_date.format('YYYY-MM-DD') === value.format('YYYY-MM-DD'))
+        listData.push({ type: 'warning', content: task?.task_name, id: task?.id_task });
+    })
+
+    return listData || [];
+  }
 
   useEffect(() => {
     async function getTask() {
-      setTaskList(await Uni.GetTaskByStudent());
+      const tasks = await Uni.GetTaskByStudent()
+      console.log(tasks);
+      setTaskList(tasks);
     }
 
     getTask();
   },[])
 
-  return <Calendar dateCellRender={dateCellRender} monthCellRender={monthCellRender} />;
+
+  return <Calendar dateCellRender={dateCellRender}/>;
 }
 
 export default Events;
