@@ -43,9 +43,9 @@ export default function TopMenuBar({ rightMenu, imageRightMenu }) {
     >
       <Row>
         <Col>
-          <div className="logo" style={{ margin: "5px" }}>
-            <img src={logo}></img>
-          </div>
+          <Row style={{ height: "100%" }} align='middle'>
+            <img style={{ borderRadius:'0px' }} src={logo}></img>
+          </Row>
         </Col>
         <Col flex="auto">
           <Row
@@ -69,8 +69,8 @@ export default function TopMenuBar({ rightMenu, imageRightMenu }) {
             align="bottom"
             gutter={[15, 0]}
           >
-              <MenuOutlined style={{ fontSize: "28px", color: "white", marginRight:'20px' }} onClick={rightMenu} />
-              <ImageOutlined style={{ fontSize: "28px", color: "white" }} onClick={imageRightMenu}/>
+              <MenuOutlined style={{ fontSize: "28px", color: "white", marginRight:'20px', cursor:'pointer' }} onClick={rightMenu} />
+              <ImageOutlined style={{ fontSize: "28px", color: "white", cursor:'pointer' }} onClick={imageRightMenu}/>
           </Row>
         </Col>
       </Row>

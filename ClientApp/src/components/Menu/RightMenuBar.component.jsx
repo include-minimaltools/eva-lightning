@@ -17,8 +17,8 @@ export default function RightMenuBar({isImageRightBar ,...props}) {
 
   return (
     <Sider
-      width={"350px"}
-      height={"100%"}
+      width="300px"
+      height="100%"
       style={{
         borderTopLeftRadius:'15px',
         borderBottomLeftRadius:'15px',
@@ -28,7 +28,8 @@ export default function RightMenuBar({isImageRightBar ,...props}) {
         backgroundSize: "cover",
         backgroundRepeat: "no-repeat",
         backgroundPosition: "center",
-        overflowY:'scroll'
+        overflowY:'scroll',
+        boxShadow: '0px 0px 10px #000000',
       }}
       collapsedWidth={0}
       {...props}

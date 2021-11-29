@@ -12,6 +12,7 @@ using Microsoft.EntityFrameworkCore;
 
 namespace eva_lightning.Controllers
 {
+    [Route("api/[controller]")]
     public class TaskController : Controller
     {
         private UniModel _context;
@@ -28,12 +29,12 @@ namespace eva_lightning.Controllers
         // }
 
 
-        
+
         // [HttpPost]
         // [Consumes("multipart/form-data")]
         // public async Task SaveFile(FileUpload file)
         // {
-            
+
         // }
 
         [HttpGet]
@@ -72,6 +73,30 @@ namespace eva_lightning.Controllers
             _context.SaveChanges();
 
             return new HttpResponseMessage(HttpStatusCode.OK);
+        }
+
+        [HttpGet("[action]")]
+        public dynamic GetByCourse(int IdCourse, string Type)
+        {
+            var course = _context.COURSE.FirstOrDefault(x => x.ID_COURSE == IdCourse);
+
+            var tasks = from t in _context.TASK
+            where t.ID_COURSE == IdCourse && t.ID_TYPE_TASK == Type
+            select new
+            {
+                id_task = t.ID_TASK,
+                task_name = t.NAME,
+                task_description = t.DESCRIPTION,
+                task_delivery_date = t.DELIVERY_DATE,
+                task_course = t.ID_COURSE,
+                task_type = t.ID_TYPE_TASK
+            };
+
+            return new 
+            {
+                tasks = tasks,
+                course = course
+            };
         }
     }
 }

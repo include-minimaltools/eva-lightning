@@ -54,7 +54,6 @@ export default function CourseAbout() {
     }
 
     setAboutData(data);
-    message.success("Success");
   };
 
   useEffect(() => {
