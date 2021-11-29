@@ -1,7 +1,10 @@
-import React from "react";
+import React, { useState } from "react";
 import { Calendar, Badge } from 'antd';
+import { useEffect } from "react";
+import Uni from "../../service/Uni.service";
 
 function getListData(value) {
+
   let listData;
   switch (value.date()) {
     case 8:
@@ -62,6 +65,16 @@ function monthCellRender(value) {
 }
 
 function Events() {
+  const [taskList, setTaskList] = useState([]);
+
+  useEffect(() => {
+    async function getTask() {
+      setTaskList(await Uni.GetTaskByStudent());
+    }
+
+    getTask();
+  },[])
+
   return <Calendar dateCellRender={dateCellRender} monthCellRender={monthCellRender} />;
 }
 

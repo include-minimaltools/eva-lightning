@@ -81,22 +81,42 @@ namespace eva_lightning.Controllers
             var course = _context.COURSE.FirstOrDefault(x => x.ID_COURSE == IdCourse);
 
             var tasks = from t in _context.TASK
-            where t.ID_COURSE == IdCourse && t.ID_TYPE_TASK == Type
-            select new
-            {
-                id_task = t.ID_TASK,
-                task_name = t.NAME,
-                task_description = t.DESCRIPTION,
-                task_delivery_date = t.DELIVERY_DATE,
-                task_course = t.ID_COURSE,
-                task_type = t.ID_TYPE_TASK
-            };
+                        where t.ID_COURSE == IdCourse && t.ID_TYPE_TASK == Type
+                        select new
+                        {
+                            id_task = t.ID_TASK,
+                            task_name = t.NAME,
+                            task_description = t.DESCRIPTION,
+                            task_delivery_date = t.DELIVERY_DATE,
+                            task_course = t.ID_COURSE,
+                            task_type = t.ID_TYPE_TASK
+                        };
 
-            return new 
+            return new
             {
                 tasks = tasks,
                 course = course
             };
+        }
+
+        [HttpGet("[action]")]
+        public dynamic GetByStudent(string Carnet)
+        {
+            var tasks = from sc in _context.STUDENT_COURSE
+                        join c in _context.COURSE on sc.ID_COURSE equals c.ID_COURSE
+                        join t in _context.TASK on c.ID_COURSE equals t.ID_COURSE
+                        where sc.ID_STUDENT == Carnet
+                        select new
+                        {
+                            id_task = t.ID_TASK,
+                            task_name = t.NAME,
+                            task_description = t.DESCRIPTION,
+                            task_delivery_date = t.DELIVERY_DATE,
+                            task_course = t.ID_COURSE,
+                            task_type = t.ID_TYPE_TASK
+                        };
+            
+            return tasks;
         }
     }
 }
