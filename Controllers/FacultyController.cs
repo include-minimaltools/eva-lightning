@@ -5,6 +5,7 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace eva_lightning.Controllers
 {
+    [Route("api/[controller]")]
     public class FacultyController : Controller
     {
         private UniModel _context;
@@ -14,7 +15,7 @@ namespace eva_lightning.Controllers
             _context = context;
         }
 
-        [HttpGet]
+        [HttpGet("[action]")]
         public IEnumerable<dynamic> Get() =>
         (from f in _context.FACULTY
          select new

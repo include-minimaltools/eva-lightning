@@ -9,6 +9,7 @@ using Microsoft.EntityFrameworkCore;
 
 namespace eva_lightning.Controllers
 {
+    [Route("api/[controller]")]
     public class TeacherCourseController : Controller
     {
         private UniModel _context;
@@ -22,7 +23,7 @@ namespace eva_lightning.Controllers
         public IEnumerable<dynamic> Get()
             => (from c in _context.TEACHER_COURSE.ToList() select new { c.ID_TEACHER, c.ID_COURSE ,c.USER_CREATE, c.DATE_CREATE });
 
-        [HttpGet]
+        [HttpGet("[action]")]
         public dynamic GetById(string IdTeacher, int IdCourse)
             => (from c in _context.TEACHER_COURSE.ToList() where (c.ID_TEACHER == IdTeacher && c.ID_COURSE == IdCourse)  select new { c.ID_TEACHER, c.ID_COURSE, c.USER_CREATE, c.DATE_CREATE });
 
