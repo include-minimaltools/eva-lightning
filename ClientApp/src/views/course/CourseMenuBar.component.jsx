@@ -12,7 +12,7 @@ import {
 const { Item } = Menu;
 
 export default function CourseMenuBar({ course, section, ...props }) {
-  console.log(section);
+  
   return (
     <Menu selectedKeys={section} mode="horizontal" {...props}>
       <Item key="about" icon={<InfoCircleOutlined />}>

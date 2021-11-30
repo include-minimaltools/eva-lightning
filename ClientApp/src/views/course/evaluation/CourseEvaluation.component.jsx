@@ -16,7 +16,6 @@ export default function CourseEvaluation() {
     const getTasks = async () => {
       const result = await Uni.GetTaskByCourse({id, type: 2});
       setTaskData(result);
-      console.log(result);
     };
 
     getTasks();

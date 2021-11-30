@@ -13,7 +13,6 @@ function CourseActivity() {
     const getTasks = async () => {
       const result = await Uni.GetTaskByCourse({id, type: 1});
       setTaskData(result);
-      console.log(result);
     };
 
     getTasks();

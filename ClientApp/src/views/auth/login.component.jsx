@@ -54,7 +54,7 @@ function Login() {
     }
 
     localStorage.setItem("user", JSON.stringify(user));
-    console.log(JSON.parse(localStorage.getItem("user")));
+    
     setLoginStatus("success");
     setTimeout(() => {
       setLoginStatus("");
