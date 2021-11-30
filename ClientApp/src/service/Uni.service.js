@@ -50,6 +50,15 @@ class Uni
     {
         const response = await fetch(`/api/task/GetByCourse?IdCourse=${id}&Type=${type}`, { method: 'GET' });
 
+        const data = await response.json();
+        return await data;
+
+    }
+    
+    static async GetInfo()
+    {
+        const response = await fetch(`/api/Course/GetAboutInfo`);
+
         if(response.status !== 200)
             return null;
 

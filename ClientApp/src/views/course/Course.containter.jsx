@@ -1,7 +1,7 @@
-import React, { useEffect } from "react";
+import React, { useEffect,useState } from "react";
 import { Col, Row, Card } from "antd";
 import { QuestionOutlined } from "@ant-design/icons";
-import { useParams } from "react-router-dom";
+import { useParams,useNavigate } from "react-router-dom";
 import CourseBackground from "../../images/svgs/CourseBackground";
 import CourseAbout from "./about/CourseAbout.component";
 import CourseActivity from "./activity/CourseActivity.component";
@@ -9,12 +9,33 @@ import CourseMenuBar from "./CourseMenuBar.component";
 import CourseEvaluation from "./evaluation/CourseEvaluation.component";
 import CourseLearning from "./learning/CourseLearning.component";
 import CourseResource from "./resource/CourseResource.component";
+import Uni from "../../service/Uni.service";
+import { message } from 'antd';
 
 export default function CourseContainer() {
+  const [aboutData, setAboutData] = useState([]);
   const { section, id } = useParams();
   useEffect(() => {
     console.log(id, section);
   }, [id, section]);
+  const navigate = useNavigate();
+
+  const getData = async () => {
+    if (id === null) return;
+    const data = await Uni.GetCareer(id);
+
+    if (data === null) {
+      message.error("No se pudo cargar la información de la clase");
+      navigate('/');
+    }
+
+    setAboutData(data);
+    message.success("Success");
+  };
+
+  useEffect(() => {
+    getData();
+  }, [])
 
   return (
     <Col>
@@ -28,7 +49,7 @@ export default function CourseContainer() {
               Avisos y novedades generales
             </a>
           </nav>
-          <CourseBackground course="Asignatura" career="Carrera"/>
+          <CourseBackground course={aboutData.course_name} career={aboutData.career_name}/>
         </Card>
       </Row>
       <Row

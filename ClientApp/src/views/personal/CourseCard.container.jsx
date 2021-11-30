@@ -1,45 +1,49 @@
-import React, { Component } from "react";
+import React, { useState, useEffect } from "react";
 import CourseCard from "./CourseCard.component";
 import "./css/CourseCards.css";
 import { Col, Row } from 'antd'
-
-const data = [
-  {
-    carrer: "Ingeniería en Sistemas Computacionales",
-    course: "Matematicas",
-    group: "Grupo 1",
-    semester: "Semestre 1",
-    year: "Año 1",
-  },
-  {
-    carrer: "Ingeniería en Sistemas Computacionales",
-    course: "Fisica",
-    group: "Grupo 1",
-    semester: "Semestre 1",
-    year: "Año 1",
-  },
-  {
-    carrer: "Ingeniería en Quimica",
-    course: "Geometria",
-    group: "Grupo 1",
-    semester: "Semestre 1",
-    year: "Año 1",
-  }
-]
+import Uni from "../../service/Uni.service";
+import { useNavigate } from "react-router-dom";
+import { message } from 'antd';
 
 export default function CourseCardContainer() {
-  return (<div style={{ background:'white', borderRadius:'10px', padding:'8px 0 4px 8px', width:'max', justifyContent:'center'}}>
+
+
+  const [aboutData, setAboutData] = useState([]);
+  const navigate = useNavigate();
+
+  const getData = async () => {
+    
+    const data = await Uni.GetInfo();
+
+    if (data === null) {
+      message.error("No se pudo cargar la información de la clase");
+      navigate('/');
+    }
+
+    setAboutData(data);
+    message.success("Success");
+  };
+
+  useEffect(() => {
+    getData();
+  }, [])
+
+
+
+
+  return (<div style={{ background: 'white', borderRadius: '10px', padding: '8px 0 4px 8px', width: 'max', justifyContent: 'center' }}>
     <Row>
       <h2>Cursos a los que se ha accedido recientemente</h2>
     </Row>
-    <Row justify="center">{ data.map(item => <>
+    <Row justify="center">{aboutData.map(item => <>
       <Col>
         <CourseCard
-          career={item.carrer}
-          course={item.course}
-          group={item.group}
-          semester={item.semester}
-          year={item.year}
+          career={item.career_name}
+          course={item.course_name}
+          group={item.groups_name}
+          semester={"semestre "+item.semester_name}
+          year={"2021"}
         />
       </Col>
     </>)}
