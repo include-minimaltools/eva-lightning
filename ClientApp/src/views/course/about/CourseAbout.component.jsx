@@ -49,7 +49,7 @@ export default function CourseAbout() {
 
   useEffect(() => {
     getData();
-  }, [])
+  }, [id])
 
   const About = "Mi experiencia profesional abarca prácticamente todas las asignaturas de XXX. Además de haber ejercido funciones de docencia desde el año XXX. En esta parte la docente puede realizar un breve resumen de su vida académica en la Universidad Nacional de Ingeniería"
   const Objetive = "Describe con objetividad y claridad los resultados del aprendizaje a alcanzar por parte del estudiante. Estos se centran en el comportamiento, es decir, detallan y establecen las habilidades y destreza que los estudiantes deben ser capaces de realizar o lograr al final del curso. Establecer un objetivo y una meta clara logra dos fines fundamentales. En primer lugar, los alumnos sabrán por qué el curso es importante y cómo éste les ayudará en el futuro. En segundo lugar, los objetivos ayudan a mantener enfocado el contenido del curso."
@@ -97,7 +97,7 @@ export default function CourseAbout() {
     },
     {
       textAlign: 'center',
-      title: aboutData.faculty_name,
+      title: aboutData?.faculty_name,
       dataIndex: 'fec',
       align: 'justify',
       sizes: '0rem'
@@ -118,21 +118,21 @@ export default function CourseAbout() {
       textAlign: 'center',
       key: '1',
       facultad: 'CARRERA:',
-      fec: aboutData.career_name,
-      grupo: aboutData.groups,
+      fec: aboutData?.career_name,
+      grupo: aboutData?.groups,
     },
     {
       textAlign: 'center',
       key: '1',
       facultad: 'DOCENTE:',
-      fec: aboutData.teacher_name,
+      fec: aboutData?.teacher_name,
       grupo: 'AULA'
     },
     {
       textAlign: 'center',
       key: '1',
       facultad: 'SEMESTRE:',
-      fec: "Semestre " + aboutData.semester + " del 2021",
+      fec: "Semestre " + aboutData?.semester + " del 2021",
       grupo: ClassRoom
     },
   ];
@@ -191,7 +191,7 @@ export default function CourseAbout() {
         </h3>
       </Card>
       {parapraph(
-        `Estimados estudiantes:\n  Bienvenidos al curso ${aboutData.course_name} en su Entorno Virtual de Aprendizaje EVA, que la Universidad Nacional de Ingeniería pone a tu disposición en el proceso de aprendizaje con el aprovechamiento de las Tic. En el curso aprenderás… para dar cumplimientos de los objetivos…`
+        `Estimados estudiantes:\n  Bienvenidos al curso ${aboutData?.course_name} en su Entorno Virtual de Aprendizaje EVA, que la Universidad Nacional de Ingeniería pone a tu disposición en el proceso de aprendizaje con el aprovechamiento de las Tic. En el curso aprenderás… para dar cumplimientos de los objetivos…`
       )}
 
       <Card
@@ -232,7 +232,7 @@ export default function CourseAbout() {
 
       <div>
         {parapraph(
-          `En este apartado el profesor deberá agregar el objetivo general y los específicos del programa de asignatura ${aboutData.course_name}`
+          `En este apartado el profesor deberá agregar el objetivo general y los específicos del programa de asignatura ${aboutData?.course_name}`
         )}
       </div>
 
@@ -256,7 +256,7 @@ export default function CourseAbout() {
         <PersonIcon style={{ fontSize: "7rem", color: "#7F7F7F" }} ></PersonIcon>
       </div>
 
-      {TeacherName(aboutData.teacher_name)}
+      {TeacherName(aboutData?.teacher_name)}
       <div style={{ width: "33rem" , marginLeft:"0.2rem",marginTop:"2rem"}}>
         <Table
           {...state}
@@ -264,7 +264,7 @@ export default function CourseAbout() {
           style={{ textAlign: "center" }}
           columns={columns}
           dataSource={data}
-          title={() => <h4>{aboutData.course_name}</h4>}
+          title={() => <h4>{aboutData?.course_name}</h4>}
         />
       </div>
 
@@ -276,7 +276,7 @@ export default function CourseAbout() {
           bordered
           columns={columns2}
           dataSource={data2}
-          title={() => <h4>{aboutData.campus_name}</h4>}
+          title={() => <h4>{aboutData?.campus_name}</h4>}
           backgroundColor={TableColor}
         />
       </div>

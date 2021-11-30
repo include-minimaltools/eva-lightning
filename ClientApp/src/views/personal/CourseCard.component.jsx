@@ -5,9 +5,7 @@ import images from "../../views/personal/assets/images";
 export default function CourseCard({
   career,
   course,
-  group,
-  semester,
-  year, ...props
+  ...props
 }) {
   function GetRandomint (min, max){
     return Math.floor(Math.random() * ((max-min) + min))
@@ -20,7 +18,7 @@ export default function CourseCard({
           <img src={images[GetRandomint(1, 5)].img} width="350" height="200" />
           <p>{career}</p>
           <h2>
-            {course} - {group} - {semester} - {year}
+            {course}
           </h2>
         </article>
       </section>

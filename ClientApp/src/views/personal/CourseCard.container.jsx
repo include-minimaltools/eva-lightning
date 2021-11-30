@@ -39,11 +39,8 @@ export default function CourseCardContainer() {
     <Row justify="center">{aboutData.map(item => <>
       <Col>
         <CourseCard
-          career={item.career_name}
-          course={item.course_name}
-          group={item.groups_name}
-          semester={"semestre "+item.semester_name}
-          year={"2021"}
+          career={item?.career_name}
+          course={item?.course_name}
         />
       </Col>
     </>)}
