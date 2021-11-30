@@ -15,9 +15,6 @@ import { message } from 'antd';
 export default function CourseContainer() {
   const [aboutData, setAboutData] = useState([]);
   const { section, id } = useParams();
-  useEffect(() => {
-    console.log(id, section);
-  }, [id, section]);
   const navigate = useNavigate();
 
   const getData = async () => {

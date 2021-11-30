@@ -26,7 +26,6 @@ function AssignDetail() {
       setDateUpdate(new moment());
 
       const nowDate = new moment();
-      // console.log(new moment(delivery - nowDate));
       setTime(delivery.diff(nowDate, "hours"));
     };
 

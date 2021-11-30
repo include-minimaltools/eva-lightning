@@ -77,7 +77,7 @@ export default function NavigationBlock({ colorFont }) {
   
 
   const onExpand = () => {
-    console.log("Trigger Expand");
+    
   };
 
   return <Accordion

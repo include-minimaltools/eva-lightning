@@ -42,7 +42,6 @@ function Events() {
   useEffect(() => {
     async function getTask() {
       const tasks = await Uni.GetTaskByStudent()
-      console.log(tasks);
       setTaskList(tasks);
     }
 
