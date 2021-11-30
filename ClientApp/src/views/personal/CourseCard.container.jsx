@@ -22,7 +22,6 @@ export default function CourseCardContainer() {
     }
 
     setAboutData(data);
-    message.success("Success");
   };
 
   useEffect(() => {

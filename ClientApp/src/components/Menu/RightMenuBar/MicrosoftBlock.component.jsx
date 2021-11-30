@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import Accordion from "@mui/material/Accordion";
 import AccordionSummary from "@mui/material/AccordionSummary";
 import AccordionDetails from "@mui/material/AccordionDetails";
@@ -6,16 +6,18 @@ import Typography from "@mui/material/Typography";
 import Perfil from "../../../images/Perfil.jpg";
 import { Fragment } from "react";
 import { Avatar, Col, Divider, Row } from "antd";
-import {
-  CloudFilled,
-  MailFilled,
-  MenuOutlined,
-} from "@ant-design/icons";
-import { Link } from "react-router-dom";
+import { CloudFilled, MailFilled, MenuOutlined } from "@ant-design/icons";
+import { UserData } from "../../../helpers";
 
 const colorFont = "white";
 
 export default function MicrosoftBlock() {
+  const [userData, setUserData] = useState();
+
+  useEffect(() => {
+    setUserData(UserData());
+    console.log(UserData());
+  }, []);
   return (
     <Fragment>
       <div>
@@ -37,14 +39,20 @@ export default function MicrosoftBlock() {
             <Row justify="center">
               <Avatar alt="Perfil" src={Perfil} size={100} />
             </Row>
-            <Row style={{ marginBottom: "30px" }} gutter={[10,0]} justify="center">
+            <Row
+              style={{ marginBottom: "30px" }}
+              gutter={[10, 0]}
+              justify="center"
+            >
               <Col>
-                <Typography>Obed Miguel You are currently</Typography>
+                <Typography>{userData?.name} {userData?.lastname} You are currently</Typography>
               </Col>
               <Col>
                 <Typography style={{ color: "green" }}>CONNECTED</Typography>
               </Col>
-              <Col><Typography>to Microsoft 365</Typography></Col>
+              <Col>
+                <Typography>to Microsoft 365</Typography>
+              </Col>
             </Row>
 
             <Row

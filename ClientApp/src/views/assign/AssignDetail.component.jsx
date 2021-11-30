@@ -13,12 +13,12 @@ function AssignDetail() {
   const [taskData, setTaskData] = useState();
   const [deliveryDate, setDeliveryDate] = useState(new moment());
   const [dateUpdate, setDateUpdate] = useState(new moment());
-  const [time, setTime] = useState(new moment());
+  const [time, setTime] = useState(0);
 
   useEffect(() => {
     const fetchData = async () => {
       const fetch = await Uni.GetTaskById(id);
-
+      console.log(fetch);
       const delivery = new moment(fetch?.task_delivery_date); 
 
       setTaskData(fetch);
@@ -117,7 +117,7 @@ function AssignDetail() {
       <Divider orientation="center">Adjuntar archivo a la tarea</Divider>
       <Row justify="center" style={{ marginBottom: "100px" }}>
         <Col>
-          <input type="file" id="file" name="file" onChange={UploadFile} />
+          <input type="file" id="file" name="file" />
         </Col>
       </Row>
     </div>

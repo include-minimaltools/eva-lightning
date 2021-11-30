@@ -27,7 +27,6 @@ export default function CourseContainer() {
     }
 
     setAboutData(data);
-    message.success("Success");
   };
 
   useEffect(() => {

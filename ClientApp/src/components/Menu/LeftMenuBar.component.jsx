@@ -39,7 +39,7 @@ export default function LeftMenuBar() {
     >
       <Menu
         mode="inline"
-        defaultSelectedKeys={["1"]}
+        defaultSelectedKeys={["home"]}
         defaultOpenKeys={["sub1"]}
         style={{
           height: "100%",
@@ -80,7 +80,7 @@ export default function LeftMenuBar() {
         <Item key="us" icon={<TeamOutlined />}>
           <Link to="/aboutus">¡Somos!</Link>
         </Item>
-        <Item key="us" icon={<ExportOutlined />}>
+        <Item key="logout" icon={<ExportOutlined />}>
           <Link to="/login">Cerrar Sesión</Link>
         </Item>
       </Menu>
